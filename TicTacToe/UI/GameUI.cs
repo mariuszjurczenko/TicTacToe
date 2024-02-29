@@ -44,4 +44,16 @@ public static class GameUI
         // 1 dla AI, cokolwiek innego i masz szansę na ludzki kontakt. Chyba że to też bot. W takim razie, powodzenia!
         return choice == "1";
     }
+
+    public static char AskForPlayerSymbol()
+    {
+        Console.WriteLine(GameTexts.SelectSymbol);
+        string input = Console.ReadLine().ToUpper();
+        while (input != "X" && input != "O")
+        {
+            Console.WriteLine(GameTexts.IncorrectSelection);
+            input = Console.ReadLine().ToUpper();
+        }
+        return input[0];
+    }
 }
