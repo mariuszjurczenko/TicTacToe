@@ -48,10 +48,12 @@ public class SimpleContainer
         {
             return CreateInstance(sourceType);
         }
-        else
-        {
-            throw new InvalidOperationException("Could not resolve " + sourceType.FullName);
-        }
+
+        // Ale nawet największy mag musi czasem przyznać, że nie wszystko jest w jego mocy.
+        // Zamiast rzucać gromy gniewu w postaci wyjątków, skrzat ten wybiera milczenie,
+        // zwracając pustkę, gdy napotka na niewiadomą.
+        // Zwróć null, jeśli typ nie jest zarejestrowany, zamiast rzucać wyjątek
+        return null;
     }
 
     private object CreateInstance(Type destinationType)

@@ -57,17 +57,16 @@ public class SimpleContainerTests
     }
 
     [Fact]
-    public void ShouldThrowInvalidOperationException_WhenTypeCannotBeResolved()
+    public void Resolve_ShouldReturnNull_WhenTypeCannotBeResolved()
     {
-        // Arrange - przygotowanie do rytuału bez wyraźnej odpowiedzi
+        // Arrange
         var container = new SimpleContainer();
 
-        // Act - próba wywołania ducha bez uprzedniej rejestracji
-        Action act = () => container.Resolve<IService>();
+        // Act 
+        var result = container.Resolve<IService>();
 
-        // Assert - oczekiwanie na gniew niezadowolonych duchów
-        act.Should().Throw<InvalidOperationException>()
-        .WithMessage("Could not resolve *");
+        // Assert
+        result.Should().BeNull();
     }
 
     public interface IService { }
