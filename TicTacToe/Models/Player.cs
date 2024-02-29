@@ -5,11 +5,13 @@ namespace TicTacToe.Models;
 
 public class Player : IPlayer
 {
-    public char Symbol { get; private set; }    // To ich znak rozpoznawczy, jak logo Batmana na niebie nad Gotham.
+    public char Symbol { get; private set; }
+    public bool IsAI { get; private set; } // Implementacja właściwości IsAI. Oto jak uczymy kowala magii
 
-    public Player(char symbol)
+    public Player(char symbol, bool isAI = false)
     {
         Symbol = symbol;    // Przydzielamy każdemu graczowi jego unikatowy symbol, jak wybierając superbohaterowi jego kostium.
+        IsAI = isAI;
     }
 
     public override string ToString()

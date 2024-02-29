@@ -20,20 +20,28 @@ public class Game
 
         while (!moveMade)
         {
-            _gameUI.PrintMessage(string.Format(GameTexts.PromptPlayerMove, _gameEngine.CurrentPlayer));
-
-            int row = _gameUI.GetInput(GameTexts.PromptRow, 1, 3) - 1;
-            int column = _gameUI.GetInput(GameTexts.PromptColumn, 1, 3) - 1;
-
-            if (!_gameEngine.IsFieldEmpty(row, column))
+            if (_gameEngine.IsCurrentPlayerAI())
             {
-                _gameUI.PrintMessage(GameTexts.ErrorInvalidInputOrOccupied);
+                _gameEngine.MakeAIMove();
+                moveMade = true;
             }
             else
             {
-                _gameEngine.MakeMove(row, column);
-                moveMade = true;
-            }
+                _gameUI.PrintMessage(string.Format(GameTexts.PromptPlayerMove, _gameEngine.CurrentPlayer));
+
+                int row = _gameUI.GetInput(GameTexts.PromptRow, 1, 3) - 1;
+                int column = _gameUI.GetInput(GameTexts.PromptColumn, 1, 3) - 1;
+
+                if (!_gameEngine.IsFieldEmpty(row, column))
+                {
+                    _gameUI.PrintMessage(GameTexts.ErrorInvalidInputOrOccupied);
+                }
+                else
+                {
+                    _gameEngine.MakeMove(row, column);
+                    moveMade = true;
+                }
+            }          
         }
     }
 

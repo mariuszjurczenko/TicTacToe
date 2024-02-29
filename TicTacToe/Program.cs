@@ -1,4 +1,5 @@
-﻿using TicTacToe.Gameplay;
+﻿using TicTacToe.AI;
+using TicTacToe.Gameplay;
 using TicTacToe.Interfaces;
 using TicTacToe.IoC;
 using TicTacToe.Models;
@@ -15,6 +16,7 @@ public class Program
         var gameUIWrapper = new GameUIWrapper();
 
         // Rejestracja typów
+        container.For<IGameAI>().Use<SimpleGameAI>();   // Wezwanie golema do życia
         container.For<IPlayerFactory>().Use<PlayerFactory>();
         container.For<IBoard>().Use<Board>();
         container.For<IGameEngine>().Use<GameEngine>();

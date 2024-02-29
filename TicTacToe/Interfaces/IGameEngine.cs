@@ -11,6 +11,8 @@ public interface IGameEngine
     bool CheckForTie();
     void InitializeBoard();
     void MakeMove(int row, int column);
+    bool IsCurrentPlayerAI();
+    void MakeAIMove();
     void SetGameRunning(bool isRunning);
     void PrintBoard();
     bool IsFieldEmpty(int row, int column);
