@@ -15,8 +15,21 @@ public class Program
         var container = new SimpleContainer();
         var gameUIWrapper = new GameUIWrapper();
 
+        // Tutaj zaczyna się nasza przygoda. Jak w starożytnym rytuale, pytamy wielkiego Orakulum (czyli naszego użytkownika),
+        // czy woli stanąć oko w oko z innym śmiertelnikiem, czy też zmierzyć się z bezdusznym Golemem AI.
+        // Pytanie użytkownika o tryb gry
+        bool playWithAI = gameUIWrapper.AskForGameMode();
+
+        // W zależności od wyboru ścieżki przez naszego bohatera, przyzywamy z głębin naszego kodu
+        // albo żywego przeciwnika, albo budzimy do życia Golema AI, by stanął na polu bitwy.
+        // To trochę jak wybór pomiędzy smokiem a hydrą – każdy przeciwnik wymaga innego rodzaju odwagi i sprytu.
+
         // Rejestracja typów
-        container.For<IGameAI>().Use<SimpleGameAI>();   // Wezwanie golema do życia
+        if (playWithAI)
+        {
+            container.For<IGameAI>().Use<SimpleGameAI>();
+        }
+
         container.For<IPlayerFactory>().Use<PlayerFactory>();
         container.For<IBoard>().Use<Board>();
         container.For<IGameEngine>().Use<GameEngine>();
