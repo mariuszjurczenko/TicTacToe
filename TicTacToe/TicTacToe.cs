@@ -19,4 +19,16 @@ public class TicTacToe
             }
         }
     }
+
+    private void PrintBoard()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                Console.Write(board[i, j]); // Dodajemy trochę przestrzeni, żeby było jak w prawdziwym kółko i krzyżyk.
+            }
+            Console.WriteLine();    // Po każdym wierszu przechodzimy do nowej linii, żeby nie było tłoku.
+        }
+    }
 }
