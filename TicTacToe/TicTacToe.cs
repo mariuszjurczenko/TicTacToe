@@ -7,7 +7,38 @@ public class TicTacToe
 
     public void PlayGame()
     {
-        // Tutaj rozpocznie się magia gry
+        bool isWinner = false;
+        bool isTie = false;
+
+        InitializeBoard();
+
+        do
+        {
+            Console.Clear();
+            PrintBoard();
+            TakeTurn();
+            isWinner = CheckForWinner();
+
+            if (isWinner)
+            {
+                Console.Clear();
+                PrintBoard();
+                Console.WriteLine($"Gratulacje, gracz {currentPlayer}, wygrywa! Oto Twój cyfrowy laur zwycięstwa!");
+                break;
+            }
+
+            isTie = CheckForTie();
+            if (isTie)
+            {
+                Console.Clear();
+                PrintBoard();
+                Console.WriteLine("I oto mamy remis! Cóż, czasami życie toczy się jak gra w kółko i krzyżyk, nieważne jak bardzo się starasz, i tak wychodzi na remis.");
+                break;
+            }
+
+            SwitchPlayer();
+
+        } while (!isWinner && !isTie);
     }
 
     private void InitializeBoard()
