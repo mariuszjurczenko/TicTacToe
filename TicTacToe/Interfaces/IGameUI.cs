@@ -9,4 +9,5 @@ public interface IGameUI
     // Czy zdecydujesz się na samotną podróż w starciu z niezgłębioną logiką AI,
     // czy też wybierzesz bardziej ludzką ścieżkę, stając oko w oko z innym śmiałkiem?
     bool AskForGameMode();
+    char AskForPlayerSymbol();
 }
