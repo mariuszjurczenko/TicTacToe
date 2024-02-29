@@ -8,22 +8,24 @@ public class GameEngine : IGameEngine
     private IPlayer playerX;
     private IPlayer playerO;
     private IGameAI _gameAI; // Sztuczna inteligencja
+    private IGameUI _gameUI;
     private IPlayerFactory _playerFactory;
 
     public IPlayer CurrentPlayer { get; private set; }
     public IBoard Board { get; private set; }
     public bool IsGameRunning { get; private set; }
 
-    public GameEngine(IBoard board, IPlayerFactory playerFactory, IGameAI gameAI)
+    public GameEngine(IBoard board, IPlayerFactory playerFactory, IGameAI gameAI, IGameUI gameUI)
     {
         IsGameRunning = true;   // Jak w dobrym serialu, gra trwa, dopóki widzowie (gracze) nie zdecydują inaczej  
         Board = board;
         _gameAI = gameAI;
+        _gameUI = gameUI;
         _playerFactory = playerFactory;
 
         // W krainie kółka i krzyżyka, wybór bohatera jest kluczowy. Czy zechcesz walczyć ramię w ramię
         // z odważnym rycerzem, czy też przywołać do życia mistycznego golema, by walczył u twojego boku?
-        InitializePlayers(_gameAI);
+        InitializePlayers();
     }
 
     public void SwitchPlayer()
@@ -85,24 +87,21 @@ public class GameEngine : IGameEngine
         return Board.IsFieldEmpty(row, column); // Sprawdzamy, czy pole jest wolne, jak parking w niedzielę rano.
     }
 
-    private void InitializePlayers(IGameAI gameAI)
+    public void InitializePlayers()
     {
-        // Każda epopeja zaczyna się od pierwszego bohatera. Tutaj mamy naszego nieustraszonego X,
-        // gotowego stanąć na polu bitwy.
-        playerX = _playerFactory.CreatePlayer('X');
+        char playerSymbol = _gameUI.AskForPlayerSymbol();
+        char opponentSymbol = playerSymbol == 'X' ? 'O' : 'X';
+
+        playerX = _playerFactory.CreatePlayer(playerSymbol);
         CurrentPlayer = playerX;
 
-        // A teraz decyzja, czy nasz drugi bohater będzie równie krwisty jak pierwszy, czy może
-        // postanowimy wezwać z głębin cyfrowego świata naszego golema AI.
-        if (gameAI == null)
+        if (_gameAI == null)
         {
-            // Ah, wybór pada na kolejnego śmiertelnika. Niech walka będzie sprawiedliwa!
-            playerO = _playerFactory.CreatePlayer('O'); // Gracz ludzki, jak dobrze mieć kogoś z krwi i kości po drugiej stronie.
+            playerO = _playerFactory.CreatePlayer(opponentSymbol); // Human player
         }
         else
         {
-            // Golem AI zostaje przywołany! Niech jego cyfrowy umysł przyniesie nam zwycięstwo!
-            playerO = _playerFactory.CreatePlayer('O', true); // AI, niech stanie przed nami w całej swej algorytmicznej chwale.
+            playerO = _playerFactory.CreatePlayer(opponentSymbol, true); // AI player
         }
     }
 }

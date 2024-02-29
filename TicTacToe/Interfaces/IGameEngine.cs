@@ -6,6 +6,7 @@ public interface IGameEngine
     IBoard Board { get; }
     bool IsGameRunning { get; }
 
+    void InitializePlayers();
     void SwitchPlayer();
     bool CheckForWinner();
     bool CheckForTie();
