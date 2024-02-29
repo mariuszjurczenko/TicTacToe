@@ -85,4 +85,18 @@ public class TicTacToe
 
         return false;   // Nie ma zwycięzcy, gra toczy się dalej.
     }
+
+    private bool CheckForTie()
+    {
+        // Sprawdź, czy wszystkie pola są zajęte
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (board[i, j] == '.')
+                    return false;   // Jeśli znajdziemy chociaż jedno puste miejsce, to jak na dyskotece, gdzie jest jeszcze miejsce na parkiecie.
+            }
+        }
+        return true;    // Wszystkie miejsca zajęte, czas ogłosić remis.
+    }
 }
