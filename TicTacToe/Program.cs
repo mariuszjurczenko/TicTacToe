@@ -1,4 +1,6 @@
-﻿namespace TicTacToe;
+﻿using TicTacToe.Gameplay;
+
+namespace TicTacToe;
 
 public class Program
 {
