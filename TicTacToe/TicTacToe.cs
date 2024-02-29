@@ -7,38 +7,47 @@ public class TicTacToe
 
     public void PlayGame()
     {
-        bool isWinner = false;
-        bool isTie = false;
+        bool playAgain = true;
 
-        InitializeBoard();
-
-        do
+        while (playAgain)
         {
-            Console.Clear();
-            PrintBoard();
-            TakeTurn();
-            isWinner = CheckForWinner();
+            // Tutaj odgrywa się cała saga Tic Tac Toe
+            bool isWinner = false;
+            bool isTie = false;
 
-            if (isWinner)
+            InitializeBoard();
+
+            do
             {
                 Console.Clear();
                 PrintBoard();
-                Console.WriteLine($"Gratulacje, gracz {currentPlayer}, wygrywa! Oto Twój cyfrowy laur zwycięstwa!");
-                break;
-            }
+                TakeTurn();
+                isWinner = CheckForWinner();
 
-            isTie = CheckForTie();
-            if (isTie)
-            {
-                Console.Clear();
-                PrintBoard();
-                Console.WriteLine("I oto mamy remis! Cóż, czasami życie toczy się jak gra w kółko i krzyżyk, nieważne jak bardzo się starasz, i tak wychodzi na remis.");
-                break;
-            }
+                if (isWinner)
+                {
+                    Console.Clear();
+                    PrintBoard();
+                    Console.WriteLine($"Gratulacje, gracz {currentPlayer}, wygrywa! Oto Twój cyfrowy laur zwycięstwa!");
+                    break;
+                }
 
-            SwitchPlayer();
+                isTie = CheckForTie();
+                if (isTie)
+                {
+                    Console.Clear();
+                    PrintBoard();
+                    Console.WriteLine("I oto mamy remis! Cóż, czasami życie toczy się jak gra w kółko i krzyżyk, nieważne jak bardzo się starasz, i tak wychodzi na remis.");
+                    break;
+                }
 
-        } while (!isWinner && !isTie);
+                SwitchPlayer();
+
+            } while (!isWinner && !isTie);
+
+            // A teraz scena, na którą wszyscy czekali: "Czy chcesz zagrać jeszcze raz?"
+            playAgain = AskToPlayAgain();
+        }
     }
 
     private void InitializeBoard()
@@ -129,5 +138,12 @@ public class TicTacToe
             }
         }
         return true;    // Wszystkie miejsca zajęte, czas ogłosić remis.
+    }
+
+    private bool AskToPlayAgain()
+    {
+        Console.WriteLine("Czy chcesz spróbować swoich sił jeszcze raz? (tak/nie) - jak w dobrym serialu, decyzja należy do Ciebie!");
+        string answer = Console.ReadLine().ToLower();
+        return answer == "tak";
     }
 }
