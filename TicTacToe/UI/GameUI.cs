@@ -1,4 +1,6 @@
-﻿namespace TicTacToe.UI;
+﻿using TicTacToe.Utils;
+
+namespace TicTacToe.UI;
 
 public static class GameUI
 {

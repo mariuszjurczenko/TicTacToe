@@ -1,4 +1,4 @@
-﻿namespace TicTacToe;
+﻿namespace TicTacToe.Utils;
 
 public static class GameTexts
 {
