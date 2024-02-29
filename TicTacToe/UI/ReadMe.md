@@ -1,0 +1,1 @@
+﻿Wielka scena, na której odbywają się wszystkie przedstawienia. To tutaj mieszkańcy ogrodu mogą zobaczyć historię, która się rozgrywa, i wziąć w niej udział.

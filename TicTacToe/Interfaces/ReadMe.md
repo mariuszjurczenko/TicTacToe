@@ -1,0 +1,1 @@
+﻿Magiczne zwierciadła, które pokazują, czego możemy się spodziewać, ale nie jak to osiągnąć. Tutaj mieszkańcy ogrodu zgadują, jakie czary mogą rzucić, ale nie wiedzą jeszcze, jakie składniki będą potrzebne.

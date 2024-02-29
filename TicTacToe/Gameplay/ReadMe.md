@@ -1,0 +1,1 @@
+﻿Polana, na której toczy się główna akcja. Tutaj gracze i widzowie zbierają się, by śledzić losy bohaterów i wpływać na przebieg wydarzeń.

@@ -1,0 +1,1 @@
+﻿Tajemniczy zamek, w którym mieszka potężny czarodziej zarządzający zależnościami. To on decyduje, który mieszkaniec ogrodu otrzyma pomoc od innych i w jaki sposób.

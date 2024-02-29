@@ -1,0 +1,1 @@
+﻿Tajemniczy las, w którym mieszkają stworzenia (modele danych), które stanowią serce naszego ogrodu. Tutaj znajdziemy drzewa (Player) i kwiaty (Board), które są niezbędne do życia w naszym magicznym świecie.
