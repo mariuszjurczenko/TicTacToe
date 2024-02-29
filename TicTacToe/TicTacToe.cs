@@ -67,4 +67,22 @@ public class TicTacToe
         // Pamiętaj, że aktualizacja planszy to jak zapisanie swojego imienia w historii - tylko zamiast imienia, wstawiamy 'X' lub 'O'.
         board[row - 1, column - 1] = currentPlayer;
     }
+
+    private bool CheckForWinner()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            // Sprawdzanie wierszy i kolumn, bo kto nie lubi wygrywać w linii prostej?
+            if (board[i, 0] == currentPlayer && board[i, 1] == currentPlayer && board[i, 2] == currentPlayer ||
+                board[0, i] == currentPlayer && board[1, i] == currentPlayer && board[2, i] == currentPlayer)
+                return true;    // Bingo! Mamy zwycięzcę!
+        }
+
+        // Sprawdzanie przekątnych, bo każdy lubi być skośnym strategiem.
+        if (board[0, 0] == currentPlayer && board[1, 1] == currentPlayer && board[2, 2] == currentPlayer ||
+            board[0, 2] == currentPlayer && board[1, 1] == currentPlayer && board[2, 0] == currentPlayer)
+            return true;    // Ktoś właśnie zdobył skośnego jackpota!
+
+        return false;   // Nie ma zwycięzcy, gra toczy się dalej.
+    }
 }
