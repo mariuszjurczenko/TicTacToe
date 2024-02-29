@@ -1,4 +1,6 @@
-﻿namespace TicTacToe;
+﻿using TicTacToe.Services;
+
+namespace TicTacToe;
 
 public class Game
 {

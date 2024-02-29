@@ -1,6 +1,8 @@
-﻿namespace TicTacToe;
+﻿using TicTacToe.Interfaces;
 
-public class Player
+namespace TicTacToe.Models;
+
+public class Player : IPlayer
 {
     public char Symbol { get; private set; }    // To ich znak rozpoznawczy, jak logo Batmana na niebie nad Gotham.
 

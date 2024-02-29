@@ -1,19 +1,21 @@
-﻿namespace TicTacToe;
+﻿using TicTacToe.Interfaces;
 
-public class GameEngine
+namespace TicTacToe.Services;
+
+public class GameEngine : IGameEngine
 {
-    private Player playerX;
-    private Player playerO;
+    private IPlayer playerX;
+    private IPlayer playerO;
 
-    public Player CurrentPlayer { get; private set; }
-    public Board Board { get; private set; }
+    public IPlayer CurrentPlayer { get; private set; }
+    public IBoard Board { get; private set; }
     public bool IsGameRunning { get; private set; }
 
-    public GameEngine()
+    public GameEngine(IBoard board, IPlayerFactory playerFactory)
     {
-        Board = new Board();
-        playerX = new Player(GameTexts.SymbolX);
-        playerO = new Player(GameTexts.SymbolO);
+        Board = board;
+        playerX = playerFactory.CreatePlayer(GameTexts.SymbolX);
+        playerO = playerFactory.CreatePlayer(GameTexts.SymbolO);
         CurrentPlayer = playerX;    // X zawsze zaczyna, bo tradycja tak nakazuje
         IsGameRunning = true;   // Jak w dobrym serialu, gra trwa, dopóki widzowie (gracze) nie zdecydują inaczej
     }

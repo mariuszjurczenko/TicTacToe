@@ -1,6 +1,8 @@
-﻿namespace TicTacToe;
+﻿using TicTacToe.Interfaces;
 
-public class Board
+namespace TicTacToe.Models;
+
+public class Board : IBoard
 {
     private char[,] board;
     private const int Size = 3; // Rozmiar planszy, standardowo 3x3, jak stół do ping-ponga dla skrzatów.
