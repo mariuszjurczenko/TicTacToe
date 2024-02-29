@@ -14,4 +14,5 @@ public static class GameTexts
     public const string PromptPlayAgain = "Czy chcesz spróbować swoich sił jeszcze raz? (tak/nie) - jak w dobrym serialu, decyzja należy do Ciebie!";
     public const string ErrorInvalidInputOrOccupied = "O nie! To pole jest już zajęte lub coś poszło nie tak. Spróbujmy jeszcze raz.";
     public const string ErrorInputRange = "Hej, superbohaterze, liczba musi być od {0} do {1}. Spróbuj jeszcze raz.";
+    public const string ChooseGameMode = "Wybierz tryb gry: 1 - dla przeciwnika AI, 2 - dla ludzkiego przeciwnika";
 }
