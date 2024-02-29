@@ -3,6 +3,7 @@
 public class TicTacToe
 {
     char[,] board = new char[3, 3];
+    char currentPlayer = 'X';   // Zaczynamy od 'X', bo tradycja mówi, że krzyżyk zawsze zaczyna.
 
     public void PlayGame()
     {
@@ -30,5 +31,10 @@ public class TicTacToe
             }
             Console.WriteLine();    // Po każdym wierszu przechodzimy do nowej linii, żeby nie było tłoku.
         }
+    }
+
+    private void SwitchPlayer()
+    {
+        currentPlayer = currentPlayer == 'X' ? 'O' : 'X';   // Taki mały trik, żeby nie zgubić się, kto teraz tańczy.
     }
 }
