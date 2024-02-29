@@ -4,8 +4,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        TicTacToe game = new TicTacToe();
-        game.PlayGame();
-        Console.ReadLine(); // Tutaj czekamy, aż gracz przeczyta wynik gry, zanim zamknie konsolę.
+        var game = new Game(); // Tutaj przywołujemy naszych bohaterów - kółko i krzyżyk.
+        game.PlayGame(); // I tak, zaczyna się nasza epicka rozgrywka.
     }
 }
