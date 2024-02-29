@@ -41,6 +41,13 @@ public class Board : IBoard
         return board; // Udostępniamy naszą planszę, jak książkę z biblioteki.
     }
 
+    // Nasza plansza, niczym starożytny pergamin pełen tajemnic
+    // Oto jak nasze oko czarodzieja odkrywa sekrety pergaminu
+    public char GetSymbol(int x, int y)
+    {
+        return board[x, y];  // Odczytujemy zaklęcie zapisane na pergaminie
+    }
+
     public void SetMove(int row, int col, char player)
     {
         if (row >= 0 && row < Size && col >= 0 && col < Size) // Sprawdzamy, czy ruch mieści się w granicach naszego "domu".
