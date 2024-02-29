@@ -37,4 +37,34 @@ public class TicTacToe
     {
         currentPlayer = currentPlayer == 'X' ? 'O' : 'X';   // Taki mały trik, żeby nie zgubić się, kto teraz tańczy.
     }
+
+    private void TakeTurn()
+    {
+        int row = -1, column = -1;
+        bool isValidInput = false;
+
+        while (!isValidInput)
+        {
+            // Tutaj gracz decyduje, gdzie chce postawić swój znak. Musi być czujny, bo jak wiadomo, w kółko i krzyżyk nie ma miejsca na błąd.
+            Console.WriteLine($"Ruch gracza {currentPlayer}: ");
+            Console.Write("Wybierz wiersz (1-3): ");
+            isValidInput = int.TryParse(Console.ReadLine(), out row) && row >= 1 && row <= 3;
+
+            if (isValidInput)
+            {
+                Console.Write("Wybierz kolumnę (1-3): ");
+                isValidInput = int.TryParse(Console.ReadLine(), out column) && column >= 1 && column <= 3;
+            }
+
+            if (!isValidInput || board[row - 1, column - 1] != '.')
+            {
+                Console.WriteLine("O nie! To pole jest już zajęte lub coś poszło nie tak. Spróbujmy jeszcze raz.");
+                isValidInput = false; // Zapewnia, że pętla kontynuuje, jeśli dane są nieprawidłowe lub pole jest zajęte
+            }
+        }
+
+        // Aktualizacja planszy, gdy dane wejściowe są prawidłowe i pole nie jest zajęte
+        // Pamiętaj, że aktualizacja planszy to jak zapisanie swojego imienia w historii - tylko zamiast imienia, wstawiamy 'X' lub 'O'.
+        board[row - 1, column - 1] = currentPlayer;
+    }
 }
