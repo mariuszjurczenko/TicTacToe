@@ -12,6 +12,7 @@ public class GameEngineTests
     private readonly Mock<IPlayerFactory> _mockPlayerFactory;
     private readonly Mock<IPlayer> _mockPlayerX;
     private readonly Mock<IPlayer> _mockPlayerO;
+    private readonly Mock<IGameAI> _mockGameAI;
 
     public GameEngineTests()
     {
@@ -24,11 +25,13 @@ public class GameEngineTests
         _mockPlayerX.Setup(p => p.Symbol).Returns('X');
         _mockPlayerO.Setup(p => p.Symbol).Returns('O');
 
-        _mockPlayerFactory.Setup(f => f.CreatePlayer('X')).Returns(_mockPlayerX.Object);
-        _mockPlayerFactory.Setup(f => f.CreatePlayer('O')).Returns(_mockPlayerO.Object);
+        _mockPlayerFactory.Setup(f => f.CreatePlayer('X', false)).Returns(_mockPlayerX.Object);
+        _mockPlayerFactory.Setup(f => f.CreatePlayer('O', true)).Returns(_mockPlayerO.Object);
+
+        _mockGameAI = new Mock<IGameAI>();
 
         // Czar przywołania Mistrza Strategii
-        _gameEngine = new GameEngine(_mockBoard.Object, _mockPlayerFactory.Object);
+        _gameEngine = new GameEngine(_mockBoard.Object, _mockPlayerFactory.Object, _mockGameAI.Object);
     }
 
     // Inicjacja Mistrza - "Ceremonia Przywołania"
@@ -171,6 +174,12 @@ public class GameEngineTests
     {
         // Na początku każdej rozgrywki, gdy nadzieje na zwycięstwo są jeszcze świeże, a plansza pusta...
         _mockBoard.Setup(b => b.IsFieldEmpty(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+        _mockBoard.Setup(b => b.GetBoard()).Returns(new char[,]
+        {
+            { '.', '.', '.' },
+            { '.', '.', '.' },
+            { '.', '.', '.' }
+        });
 
         // Zapytujemy naszego sędziego, czy już można mówić o remisie
         bool result = _gameEngine.CheckForTie();
