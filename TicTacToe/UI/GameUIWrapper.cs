@@ -12,4 +12,3 @@ public class GameUIWrapper : IGameUI
     public bool AskForGameMode() => GameUI.AskForGameMode();
     public char AskForPlayerSymbol() => GameUI.AskForPlayerSymbol();
 }
-}

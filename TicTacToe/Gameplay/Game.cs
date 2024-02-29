@@ -84,7 +84,10 @@ public class Game
             _gameEngine.SetGameRunning(_gameUI.AskToPlayAgain());
 
             if (_gameEngine.IsGameRunning)
+            {
                 _gameEngine.InitializeBoard();  // Reset planszy to jak Gandalf, który mówi "A teraz zaczynamy od nowa".
+                _gameEngine.InitializePlayers();
+            }
         }
     }
 }
