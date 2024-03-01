@@ -11,4 +11,5 @@ public class GameUIWrapper : IGameUI
     // przywołuje starożytne zaklęcie z krainy GameUI, pytając dusze wędrowców o wybór ścieżki, którą pragną podążyć.
     public bool AskForGameMode() => GameUI.AskForGameMode();
     public char AskForPlayerSymbol() => GameUI.AskForPlayerSymbol();
+    public bool AskIfPlayerStartsFirst() => GameUI.AskIfPlayerStartsFirst();
 }
