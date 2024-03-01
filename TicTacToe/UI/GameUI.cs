@@ -35,14 +35,28 @@ public static class GameUI
         return answer == GameTexts.ConfirmYes;
     }
 
-    public static bool AskForGameMode()
+    public static GameMode AskForGameMode()
     {
         // Ah, wielki wybór przed Tobą, o wędrowcze cyfrowych krain! Czy zechcesz zmierzyć się z bezduszną maszyną
         // czy raczej wybierzesz ciepło ludzkiego towarzystwa? Wybierz mądrze, gdyż od tego zależy Twoja dalsza ścieżka.
         Console.WriteLine(GameTexts.ChooseGameMode);
-        var choice = Console.ReadLine();
-        // 1 dla AI, cokolwiek innego i masz szansę na ludzki kontakt. Chyba że to też bot. W takim razie, powodzenia!
-        return choice == "1";
+        GameMode choice = 0;
+        bool isValidChoice = false;
+
+        while (!isValidChoice)
+        {
+            if (Enum.TryParse(Console.ReadLine(), out choice) && Enum.IsDefined(typeof(GameMode), choice))
+            {
+                isValidChoice = true;
+            }
+            else
+            {
+                Console.WriteLine(GameTexts.IncorrectSelectionGameMode);
+                Console.WriteLine(GameTexts.ChooseGameMode);
+            }
+        }
+
+        return choice;
     }
 
     public static char AskForPlayerSymbol()
