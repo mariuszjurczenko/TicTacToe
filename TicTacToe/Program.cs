@@ -5,6 +5,7 @@ using TicTacToe.IoC;
 using TicTacToe.Models;
 using TicTacToe.Services;
 using TicTacToe.UI;
+using TicTacToe.Utils;
 
 namespace TicTacToe;
 
@@ -18,16 +19,22 @@ public class Program
         // Tutaj zaczyna się nasza przygoda. Jak w starożytnym rytuale, pytamy wielkiego Orakulum (czyli naszego użytkownika),
         // czy woli stanąć oko w oko z innym śmiertelnikiem, czy też zmierzyć się z bezdusznym Golemem AI.
         // Pytanie użytkownika o tryb gry
-        bool playWithAI = gameUIWrapper.AskForGameMode();
-
-        // W zależności od wyboru ścieżki przez naszego bohatera, przyzywamy z głębin naszego kodu
-        // albo żywego przeciwnika, albo budzimy do życia Golema AI, by stanął na polu bitwy.
-        // To trochę jak wybór pomiędzy smokiem a hydrą – każdy przeciwnik wymaga innego rodzaju odwagi i sprytu.
+        GameMode gameMode = gameUIWrapper.AskForGameMode();
 
         // Rejestracja typów
-        if (playWithAI)
+        switch (gameMode)
         {
-            container.For<IGameAI>().Use<SimpleGameAI>();
+            case GameMode.EasyAI:
+                container.For<IGameAI>().Use<SimpleGameAI>(); // Dla przeciwnika AI łatwego
+                break;
+            case GameMode.MediumAI:
+                container.For<IGameAI>().Use<HeuristicGameAI>(); // Dla przeciwnika AI średniego
+                break;
+            case GameMode.HumanOpponent:
+                // Nie rejestruj żadnego AI, gra z ludzkim przeciwnikiem
+                break;
+            default:
+                break;
         }
 
         container.For<IPlayerFactory>().Use<PlayerFactory>();
