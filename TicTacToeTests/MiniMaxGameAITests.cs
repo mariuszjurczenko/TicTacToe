@@ -1,16 +1,25 @@
 ﻿using FluentAssertions;
+using Moq;
 using TicTacToe.AI;
+using TicTacToe.Interfaces;
 using TicTacToe.Models;
 
 namespace TicTacToe.Tests;
 
 public class MiniMaxGameAITests
 {
+    private readonly Mock<IBoardRenderer> _mockBoardRenderer;
+
+    public MiniMaxGameAITests()
+    {
+        _mockBoardRenderer = new Mock<IBoardRenderer>();
+    }
+
     [Fact]
     public void DecideMove_Should_SelectWinningMove_When_Possible()
     {
         // Arrange
-        var board = new Board();        // Ustawiamy planszę w stanie, gdzie AI ma natychmiastową możliwość wygranej
+        var board = new Board(_mockBoardRenderer.Object);        // Ustawiamy planszę w stanie, gdzie AI ma natychmiastową możliwość wygranej
         board.SetMove(0, 0, 'X');
         board.SetMove(0, 1, 'X');
         board.SetMove(1, 1, 'O');
@@ -28,7 +37,7 @@ public class MiniMaxGameAITests
     public void DecideMove_Should_BlockOpponentWinningMove_When_Possible()
     {
         // Arrange
-        var board = new Board();        // Ustawienie tak aby gracz 'O', był o jeden ruch od wygranej
+        var board = new Board(_mockBoardRenderer.Object);        // Ustawienie tak aby gracz 'O', był o jeden ruch od wygranej
         board.SetMove(0, 0, 'O');
         board.SetMove(0, 2, 'O');
         board.SetMove(1, 0, 'X');

@@ -10,18 +10,20 @@ public class HeuristicGameAITests
 {
     private readonly HeuristicGameAI _ai;
     private readonly Mock<IBoard> _mockBoard;
+    private readonly Mock<IBoardRenderer> _mockBoardRenderer;
 
     public HeuristicGameAITests()
     {
         _ai = new HeuristicGameAI();
         _mockBoard = new Mock<IBoard>();
+        _mockBoardRenderer = new Mock<IBoardRenderer>();
     }
 
     [Fact]
     public void DecideMove_ShouldWin_WhenHasWinningMove()
     {
         // Arrange
-        var board = new Board();
+        var board = new Board(_mockBoardRenderer.Object);
         // Przygotuj planszę tak, aby AI miało możliwość wygranej
         board.SetMove(0, 0, 'X');
         board.SetMove(0, 1, 'X');
@@ -38,7 +40,7 @@ public class HeuristicGameAITests
     public void DecideMove_ShouldBlockOpponent_WhenOpponentHasWinningMove()
     {
         // Arrange
-        var board = new Board();
+        var board = new Board(_mockBoardRenderer.Object);
         // Przygotuj planszę tak, aby przeciwnik miał możliwość wygranej
         board.SetMove(0, 0, 'O');
         board.SetMove(0, 1, 'O');

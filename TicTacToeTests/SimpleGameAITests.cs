@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
+using Moq;
 using TicTacToe.AI;
+using TicTacToe.Interfaces;
 using TicTacToe.Models;
 
 namespace TicTacToe.Tests;
@@ -10,10 +12,12 @@ public class SimpleGameAITests
     private readonly SimpleGameAI ai;
     private readonly char playerSymbol;
     private readonly char opponentSymbol;
+    private readonly Mock<IBoardRenderer> mockBoardRenderer;
 
     public SimpleGameAITests()
     {
-        board = new Board();
+        mockBoardRenderer = new Mock<IBoardRenderer>();
+        board = new Board(mockBoardRenderer.Object);
         ai = new SimpleGameAI();
         playerSymbol = 'X';
         opponentSymbol = 'O';

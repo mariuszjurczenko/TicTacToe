@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Moq;
 using TicTacToe.Interfaces;
 using TicTacToe.IoC;
 using TicTacToe.Models;
@@ -7,6 +8,13 @@ namespace TicTacToe.Tests;
 
 public class SimpleContainerTests
 {
+    private readonly Mock<IBoardRenderer> _mockBoardRenderer;
+
+    public SimpleContainerTests()
+    {
+        _mockBoardRenderer = new Mock<IBoardRenderer>();
+    }
+
     [Fact]
     public void ShouldResolveType_WhenTypeIsRegistered()
     {
@@ -27,7 +35,7 @@ public class SimpleContainerTests
     {
         // Arrange - zaklęcie tworzenia wiecznego więzienia
         var container = new SimpleContainer();
-        var singletonInstance = new Board();
+        var singletonInstance = new Board(_mockBoardRenderer.Object);
         container.ForSingleton<IBoard>(singletonInstance);
 
         // Act - dwukrotne przywołanie ducha planszy

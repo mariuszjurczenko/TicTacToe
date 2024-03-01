@@ -1,15 +1,25 @@
 ﻿using FluentAssertions;
+using Moq;
+using TicTacToe.Interfaces;
 using TicTacToe.Models;
 
 namespace TicTacToe.Tests;
 
 public class BoardTests
 {
+    private readonly Mock<IBoardRenderer> _mockBoardRenderer;
+    private readonly IBoard board;
+
+    public BoardTests()
+    {
+        _mockBoardRenderer = new Mock<IBoardRenderer>();
+        board = new Board(_mockBoardRenderer.Object);
+    }
+
     [Fact]
     public void Board_ShouldBeInitializedWithEmptyFields()
     {
         // Arrange
-        var board = new Board();
         var expectedValue = '.';
 
         // Act & Assert
@@ -29,7 +39,6 @@ public class BoardTests
     public void SetMove_ShouldPlacePlayerSymbolOnBoard(int row, int col, char symbol)
     {
         // Arrange Przygotowanie do pojedynku
-        var board = new Board();
 
         // Act Rycerski cios - ustawienie symbolu na planszy
         board.SetMove(row, col, symbol);
@@ -45,7 +54,6 @@ public class BoardTests
     public void IsFieldEmpty_ShouldReturnFalseAfterMoveIsSet(int row, int col)
     {
         // Arrange Przygotowanie - rycerz zajmuje pole
-        var board = new Board();
         board.SetMove(row, col, 'X');
 
         // Act Próba - czy pole jest zajęte?
@@ -62,7 +70,6 @@ public class BoardTests
     public void IsFieldEmpty_ShouldReturnTrueForEmptyFields(int row, int col)
     {
         // Arrange Przygotowanie - plansza przed bitwą
-        var board = new Board();
 
         // Act Próba - czy pole jest wolne?
         var result = board.IsFieldEmpty(row, col);
@@ -72,25 +79,17 @@ public class BoardTests
     }
 
     [Fact]
-    public void PrintBoard_ShouldPrintCorrectlyFormattedBoard()
+    public void PrintBoard_ShouldInvokeRenderBoardCorrectly()
     {
-        // Arrange Przygotowanie - saga bitwy na planszy
-        var board = new Board();
+        // Arrange
         board.SetMove(0, 0, 'X');
         board.SetMove(1, 1, 'O');
         board.SetMove(2, 2, 'X');
-        var expectedOutput = "X..\r\n.O.\r\n..X\r\n";
 
-        using (var sw = new StringWriter())
-        {
-            Console.SetOut(sw);
+        // Act
+        board.PrintBoard();
 
-            // Act - wydruk sagi bitwy
-            board.PrintBoard();
-
-            // Assert Weryfikacja - czy saga została wiernie odzwierciedlona?
-            var result = sw.ToString();
-            result.Should().Be(expectedOutput, because: "saga bitewna musi być precyzyjnie przedstawiona na papierze");
-        }
+        // Assert
+        _mockBoardRenderer.Verify(m => m.RenderBoard(It.IsAny<Board>()), Times.Once());
     }
 }
