@@ -30,6 +30,9 @@ public class Program
             case GameMode.MediumAI:
                 container.For<IGameAI>().Use<HeuristicGameAI>(); // Dla przeciwnika AI średniego
                 break;
+            case GameMode.HardAI:
+                container.For<IGameAI>().Use<MiniMaxGameAI>(); // Dla przeciwnika AI trudnego
+                break;
             case GameMode.HumanOpponent:
                 // Nie rejestruj żadnego AI, gra z ludzkim przeciwnikiem
                 break;
