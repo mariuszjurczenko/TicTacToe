@@ -10,4 +10,5 @@ public interface IGameUI
     // czy też wybierzesz bardziej ludzką ścieżkę, stając oko w oko z innym śmiałkiem?
     bool AskForGameMode();
     char AskForPlayerSymbol();
+    bool AskIfPlayerStartsFirst();
 }
