@@ -13,6 +13,7 @@ public class GameEngineTests
     private readonly Mock<IPlayer> _mockPlayerX;
     private readonly Mock<IPlayer> _mockPlayerO;
     private readonly Mock<IGameAI> _mockGameAI;
+    private readonly Mock<IGameUI> _mockGameUI;
 
     public GameEngineTests()
     {
@@ -29,9 +30,12 @@ public class GameEngineTests
         _mockPlayerFactory.Setup(f => f.CreatePlayer('O', true)).Returns(_mockPlayerO.Object);
 
         _mockGameAI = new Mock<IGameAI>();
+        _mockGameUI = new Mock<IGameUI>();
+        _mockGameUI.Setup(ui => ui.AskForPlayerSymbol()).Returns('X'); // Założenie, że użytkownik wybiera 'X'
+        _mockGameUI.Setup(ui => ui.AskIfPlayerStartsFirst()).Returns(true); // Założenie, że użytkownik chce zacząć
 
         // Czar przywołania Mistrza Strategii
-        _gameEngine = new GameEngine(_mockBoard.Object, _mockPlayerFactory.Object, _mockGameAI.Object);
+        _gameEngine = new GameEngine(_mockBoard.Object, _mockPlayerFactory.Object, _mockGameAI.Object, _mockGameUI.Object);
     }
 
     // Inicjacja Mistrza - "Ceremonia Przywołania"
@@ -271,6 +275,7 @@ public class GameEngineTests
 
         // Oczarowanie planszy zaklęciem nowego początku
         _gameEngine.InitializeBoard();
+        _gameEngine.InitializePlayers();
         _gameEngine.SetGameRunning(true);
 
         // Sprawdzamy, czy pierwszy rycerz gotowy do walki to zawsze odważny PlayerX
