@@ -87,6 +87,7 @@ public class Game
             {
                 _gameEngine.InitializeBoard();  // Reset planszy to jak Gandalf, który mówi "A teraz zaczynamy od nowa".
                 _gameEngine.InitializePlayers();
+                _gameEngine.WhoPlayerStartsFirst();
             }
         }
     }
