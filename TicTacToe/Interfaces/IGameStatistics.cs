@@ -9,4 +9,6 @@ public interface IGameStatistics
     void IncrementWinsX();
     void IncrementWinsO();
     void IncrementTies();
+    void SaveStats(string filePath);
+    void LoadStats(string filePath);
 }
