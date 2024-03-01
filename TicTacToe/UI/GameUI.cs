@@ -56,4 +56,18 @@ public static class GameUI
         }
         return input[0];
     }
+
+    public static bool AskIfPlayerStartsFirst()
+    {
+        Console.WriteLine(GameTexts.AskIfPlayerStartsFirst);
+        string input = Console.ReadLine().ToUpper();
+
+        // Tutaj zaczyna się magia decyzji. To trochę jak wybór, czy chcesz być Gandalfem i prowadzić drużynę, czy Frodem, mającym zawsze wsparcie z tyłu.
+        while (input != "T" && input != "N")
+        {
+            Console.WriteLine(GameTexts.IncorrectSelectionWhoStarts);
+            input = Console.ReadLine().ToUpper();
+        }
+        return input == "T";
+    }
 }
