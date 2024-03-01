@@ -17,4 +17,6 @@ public static class GameTexts
     public const string ChooseGameMode = "Wybierz tryb gry: 1 - dla przeciwnika AI, 2 - dla ludzkiego przeciwnika";
     public const string SelectSymbol = "Wybierz symbol: X lub O";
     public const string IncorrectSelection = "Nieprawidłowy wybór. Proszę wybrać X lub O:";
+    public const string AskIfPlayerStartsFirst = "Czy chcesz rozpocząć grę jako pierwszy? (T/N):";
+    public const string IncorrectSelectionWhoStarts = "Nieprawidłowy wybór. Proszę wpisać T (tak) lub N (nie):";
 }
