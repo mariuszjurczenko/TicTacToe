@@ -61,6 +61,16 @@ public class Game
 
                 if (isWinner)
                 {
+                    // Aktualizacja statystyk w zależności od symbolu zwycięzcy
+                    if (_gameEngine.CurrentPlayer.Symbol == GameTexts.SymbolX)
+                    {
+                        _gameEngine.Statistics.IncrementWinsX();
+                    }
+                    else if (_gameEngine.CurrentPlayer.Symbol == GameTexts.SymbolO)
+                    {
+                        _gameEngine.Statistics.IncrementWinsO();
+                    }
+
                     Console.Clear();
                     _gameEngine.PrintBoard();
                     _gameUI.PrintMessage(string.Format(GameTexts.GameWin, _gameEngine.CurrentPlayer));
@@ -71,6 +81,7 @@ public class Game
                 if (isTie)
                 {
                     Console.Clear();
+                    _gameEngine.Statistics.IncrementTies();
                     _gameEngine.PrintBoard();
                     _gameUI.PrintMessage(GameTexts.GameTie);
                     break;
@@ -81,6 +92,7 @@ public class Game
             } while (!isWinner && !isTie);
 
             // Pytanie o kolejną grę
+            _gameUI.PrintMessage(_gameEngine.Statistics.ToString());
             _gameEngine.SetGameRunning(_gameUI.AskToPlayAgain());
 
             if (_gameEngine.IsGameRunning)
