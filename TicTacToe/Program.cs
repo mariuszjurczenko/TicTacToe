@@ -3,6 +3,7 @@ using TicTacToe.Gameplay;
 using TicTacToe.Interfaces;
 using TicTacToe.IoC;
 using TicTacToe.Models;
+using TicTacToe.Renderers;
 using TicTacToe.Services;
 using TicTacToe.UI;
 using TicTacToe.Utils;
@@ -41,6 +42,7 @@ public class Program
         }
 
         container.For<IPlayerFactory>().Use<PlayerFactory>();
+        container.For<IBoardRenderer>().Use<ConsoleBoardRenderer>();
         container.For<IBoard>().Use<Board>();
         container.For<IGameEngine>().Use<GameEngine>();
         container.For<IGameStatistics>().Use<GameStatistics>();
