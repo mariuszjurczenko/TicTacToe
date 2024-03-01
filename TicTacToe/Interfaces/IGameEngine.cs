@@ -5,6 +5,7 @@ public interface IGameEngine
     IPlayer CurrentPlayer { get; }
     IBoard Board { get; }
     bool IsGameRunning { get; }
+    IGameStatistics Statistics { get; }
 
     void InitializePlayers();
     void WhoPlayerStartsFirst();

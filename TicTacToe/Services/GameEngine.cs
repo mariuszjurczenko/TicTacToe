@@ -18,7 +18,8 @@ public class GameEngine : IGameEngine
 
     public GameEngine(IBoard board, IPlayerFactory playerFactory, IGameAI gameAI, IGameUI gameUI, IGameStatistics statistics)
     {
-        IsGameRunning = true;   // Jak w dobrym serialu, gra trwa, dopóki widzowie (gracze) nie zdecydują inaczej  
+        IsGameRunning = true;   // Jak w dobrym serialu, gra trwa, dopóki widzowie (gracze) nie zdecydują inaczej
+        Statistics = statistics;
         Board = board;
         _gameAI = gameAI;
         _gameUI = gameUI;
@@ -28,7 +29,6 @@ public class GameEngine : IGameEngine
         // z odważnym rycerzem, czy też przywołać do życia mistycznego golema, by walczył u twojego boku?
         InitializePlayers();
         WhoPlayerStartsFirst();
-        Statistics = statistics;
     }
 
     public void SwitchPlayer()
