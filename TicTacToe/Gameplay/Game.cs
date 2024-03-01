@@ -47,6 +47,8 @@ public class Game
 
     public void PlayGame()
     {
+        _gameEngine.Statistics.LoadStats("GameStats.txt"); // Na początku metody
+
         while (_gameEngine.IsGameRunning)
         {
             bool isWinner;
@@ -91,6 +93,7 @@ public class Game
 
             } while (!isWinner && !isTie);
 
+            _gameEngine.Statistics.SaveStats("GameStats.txt"); // Przed pytaniem o kolejną grę
             // Pytanie o kolejną grę
             _gameUI.PrintMessage(_gameEngine.Statistics.ToString());
             _gameEngine.SetGameRunning(_gameUI.AskToPlayAgain());
