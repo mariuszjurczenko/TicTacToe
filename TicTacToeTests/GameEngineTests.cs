@@ -14,6 +14,7 @@ public class GameEngineTests
     private readonly Mock<IPlayer> _mockPlayerO;
     private readonly Mock<IGameAI> _mockGameAI;
     private readonly Mock<IGameUI> _mockGameUI;
+    private readonly Mock<IGameStatistics> _mockGameStatistics;
 
     public GameEngineTests()
     {
@@ -33,9 +34,11 @@ public class GameEngineTests
         _mockGameUI = new Mock<IGameUI>();
         _mockGameUI.Setup(ui => ui.AskForPlayerSymbol()).Returns('X'); // Założenie, że użytkownik wybiera 'X'
         _mockGameUI.Setup(ui => ui.AskIfPlayerStartsFirst()).Returns(true); // Założenie, że użytkownik chce zacząć
+        _mockGameStatistics = new Mock<IGameStatistics>();
 
         // Czar przywołania Mistrza Strategii
-        _gameEngine = new GameEngine(_mockBoard.Object, _mockPlayerFactory.Object, _mockGameAI.Object, _mockGameUI.Object);
+        _gameEngine = new GameEngine(_mockBoard.Object, _mockPlayerFactory.Object, _mockGameAI.Object,
+            _mockGameUI.Object, _mockGameStatistics.Object);
     }
 
     // Inicjacja Mistrza - "Ceremonia Przywołania"
