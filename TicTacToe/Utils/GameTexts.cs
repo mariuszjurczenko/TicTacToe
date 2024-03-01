@@ -20,4 +20,5 @@ public static class GameTexts
     public const string AskIfPlayerStartsFirst = "Czy chcesz rozpocząć grę jako pierwszy? (T/N):";
     public const string IncorrectSelectionWhoStarts = "Nieprawidłowy wybór. Proszę wpisać T (tak) lub N (nie):";
     public const string IncorrectSelectionGameMode = "Nieprawidłowy wybór. Proszę wybrać 1, 2 lub 3.";
+    public const string Statistics = "Wygrane X: {0}, Wygrane O: {1}, Remisy: {2}";
 }
