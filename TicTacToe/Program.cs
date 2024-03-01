@@ -40,6 +40,7 @@ public class Program
         container.For<IPlayerFactory>().Use<PlayerFactory>();
         container.For<IBoard>().Use<Board>();
         container.For<IGameEngine>().Use<GameEngine>();
+        container.For<IGameStatistics>().Use<GameStatistics>();
         container.ForSingleton<IGameUI>(gameUIWrapper);
 
         // Rozwiązanie zależności
