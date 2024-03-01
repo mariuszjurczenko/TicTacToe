@@ -6,10 +6,12 @@ public class Board : IBoard
 {
     private char[,] board;
     private const int Size = 3; // Rozmiar planszy, standardowo 3x3, jak stół do ping-ponga dla skrzatów.
+    public IBoardRenderer Renderer { get; set; }
 
-    public Board()
+    public Board(IBoardRenderer renderer)
     {
         board = new char[Size, Size]; // Tworzymy planszę, każde pole to jak czysta kartka w notatniku.
+        Renderer = renderer;
         InitializeBoard(); // Rozstawiamy "meble" - w naszym przypadku, wypełniamy planszę kropkami.
     }
 
@@ -26,19 +28,17 @@ public class Board : IBoard
 
     public void PrintBoard()
     {
-        for (int i = 0; i < Size; i++)
-        {
-            for (int j = 0; j < Size; j++)
-            {
-                Console.Write(board[i, j]); // Wyświetlamy każde pole, jakby to była wystawa sztuki.
-            }
-            Console.WriteLine(); // Po każdym wierszu robimy odstęp, dla lepszego efektu wizualnego.
-        }
+        Renderer.RenderBoard(this);
     }
 
     public char[,] GetBoard()
     {
         return board; // Udostępniamy naszą planszę, jak książkę z biblioteki.
+    }
+
+    public int GetSize()
+    {
+        return Size;
     }
 
     // Nasza plansza, niczym starożytny pergamin pełen tajemnic
