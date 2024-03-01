@@ -7,6 +7,7 @@ public interface IGameEngine
     bool IsGameRunning { get; }
 
     void InitializePlayers();
+    void WhoPlayerStartsFirst();
     void SwitchPlayer();
     bool CheckForWinner();
     bool CheckForTie();

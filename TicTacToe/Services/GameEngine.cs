@@ -26,6 +26,7 @@ public class GameEngine : IGameEngine
         // W krainie kółka i krzyżyka, wybór bohatera jest kluczowy. Czy zechcesz walczyć ramię w ramię
         // z odważnym rycerzem, czy też przywołać do życia mistycznego golema, by walczył u twojego boku?
         InitializePlayers();
+        WhoPlayerStartsFirst();
     }
 
     public void SwitchPlayer()
@@ -103,5 +104,20 @@ public class GameEngine : IGameEngine
         {
             playerO = _playerFactory.CreatePlayer(opponentSymbol, true); // AI player
         }
+    }
+
+    public void WhoPlayerStartsFirst()
+    {
+        bool playerStartsFirst = _gameUI.AskIfPlayerStartsFirst();
+        if (playerStartsFirst)
+        {
+            CurrentPlayer = playerX;
+        }
+        else
+        {
+            CurrentPlayer = playerO;
+        }
+
+        IsGameRunning = true;
     }
 }
