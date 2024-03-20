@@ -6,4 +6,5 @@ Każdy etap projektu jest szczegółowo opisany, co zapewnia czytelnikom wiedzę
 definiowania klas i interfejsów, implementacji logiki gry, oraz optymalizacji i testowania kodu. 
 Idealna dla osób chcących nauczyć się programowania, wzorców projektowych i technik programowania obiektowego na realnym przykładzie.
 
-
+A tutaj link do e-booka : 
+https://mariuszjurczenko.pl/ebook/7-dniowe-wyzwanie-mk/krok1/
