@@ -7,4 +7,4 @@ definiowania klas i interfejsów, implementacji logiki gry, oraz optymalizacji i
 Idealna dla osób chcących nauczyć się programowania, wzorców projektowych i technik programowania obiektowego na realnym przykładzie.
 
 A tutaj link do e-booka : 
-https://mariuszjurczenko.pl/ebook/7-dniowe-wyzwanie-mk/krok1/
+https://mariuszjurczenko.pl/ebook/7-dniowe-wyzwanie/1-1/
